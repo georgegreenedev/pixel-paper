@@ -1,0 +1,128 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+label {
+  display: block;
+  font: 1rem "Fira Sans", sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+  height: 100%;
+  width: 100%;
+  /* justify-content: space-evenly; */
+}
+
+.dimensions-container {
+  display: flex;
+  justify-content: space-evenly;
+  height: fit-content;
+}
+
+.dimensions-container > div > input {
+  width: 75px;
+}
+
+.dimensions-container > div > label {
+  user-select: none;
+}
+
+.active {
+  outline-color: rgb(137, 126, 255);
+  outline-style: solid;
+  outline-width: thick;
+  position: relative;
+  z-index: 1;
+}
+
+.paper-container {
+  display: grid;
+  place-content: space-evenly;
+}
+
+#paper {
+  /* resize: both; */
+  /* overflow: hidden; */
+  display: grid;
+  background-color: rgba(0, 0, 0, 0.250);
+  gap: 1px;
+  outline: rgba(0, 0, 0, 0.500) solid;
+  grid: repeat(16, 25px) / repeat(16, 25px);
+  /* height: calc(25px * 16); */
+  margin: auto;
+  /* width: calc(25px * 16); */
+}
+
+
+#palette {
+  display: grid;
+  place-self: center;
+  gap: 1rem;
+  /* height: 50%; */
+}
+
+#palette > button {
+  height: 50px;
+  width: 50px;
+}
+
+#controls {
+  display: grid;
+  place-self: center;
+  height: 50%;
+}
+
+#controls > button {
+  height: fit-content;
+  width: 75px;
+}
+
+#blue-color-button {
+  background-color: rgb(137, 126, 255);
+  height: 50px;
+  width: 50px;
+}
+
+#brown-color-button {
+  background-color: rgb(136, 112, 0);
+  height: 50px;
+  width: 50px;
+}
+
+#red-color-button {
+  background-color: rgb(216, 40, 0);
+  height: 50px;
+  width: 50px;
+}
+
+#tan-color-button {
+  background-color: rgb(252, 152, 56);
+  height: 50px;
+  width: 50px;
+}
+
+::backdrop {
+  background-color: rgb(220, 220, 220);
+  opacity: 0.5;
+}
+
+dialog {
+  margin: auto;
+}

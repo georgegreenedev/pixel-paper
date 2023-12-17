@@ -1,8 +1,44 @@
-export function add(a: number, b: number): number {
-  return a + b;
+const BASE_PATH = "./public";
+
+// Start listening on port 8080 of localhost.
+const server = Deno.listen({ port: 8080 });
+console.log("File server running on http://localhost:8080/");
+
+for await (const conn of server) {
+  handleHttp(conn).catch(console.error);
 }
 
-// Learn more at https://deno.land/manual/examples/module_metadata#concepts
-if (import.meta.main) {
-  console.log("Add 2 + 3 =", add(2, 3));
+async function handleHttp(conn: Deno.Conn) {
+  const httpConn = Deno.serveHttp(conn);
+  for await (const requestEvent of httpConn) {
+    // Use the request pathname as filepath
+    const url = new URL(requestEvent.request.url);
+    const filepath = decodeURIComponent(url.pathname);
+
+    // Try opening the file
+    let file;
+    try {
+      switch (filepath) {
+        case "/":
+          file = await Deno.open(BASE_PATH + "/index.html", { read: true });
+          break;
+        default:
+          file = await Deno.open(BASE_PATH + filepath, { read: true });
+          break;
+      }
+    } catch {
+      // If the file cannot be opened, return a "404 Not Found" response
+      const notFoundResponse = new Response("404 Not Found", { status: 404 });
+      await requestEvent.respondWith(notFoundResponse);
+      continue;
+    }
+
+    // Build a readable stream so the file doesn't have to be fully loaded into
+    // memory while we send it
+    const readableStream = file.readable;
+
+    // Build and send the response
+    const response = new Response(readableStream);
+    await requestEvent.respondWith(response);
+  }
 }

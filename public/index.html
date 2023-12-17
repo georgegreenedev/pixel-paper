@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixel Paper</title>
+    <link rel="stylesheet" type="text/css" href="reset.css" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <!-- Wrapper for page contents -->
+    <div class="container">
+      <!-- Controls on left -->
+      <div id="controls">
+        <button id="save-button">Save</button>
+        <button id="load-button">Load</button>
+        <button id="delete-button">Delete</button>
+        <button id="undo-button">Undo</button>
+        <button id="redo-button">Redo</button>
+        <button id="clear-button">Clear</button>
+      </div>
+
+      <!-- Graph paper in middle -->
+      <div class="paper-container">
+        <div id="paper"></div>
+        <div class="dimensions-container">
+          <div>
+            <label for="paper-columns-input">Columns</label>
+            <input
+              id="paper-columns-input"
+              name="paper-columns-input"
+              type="number"
+              value="16"
+            />
+          </div>
+          <div>
+            <label for="paper-rows-input">Rows</label>
+            <input
+              id="paper-rows-input"
+              name="paper-rows-input"
+              type="number"
+              value="16"
+            />
+          </div>
+          <div>
+            <label for="paper-square-size-input">Squares</label>
+            <input
+              id="paper-square-size-input"
+              name="paper-square-size-input"
+              type="number"
+              value="25"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Color palette on right -->
+      <div id="palette">
+        <button id="brown-color-button"></button>
+        <button id="red-color-button"></button>
+        <button id="tan-color-button"></button>
+        <button id="blue-color-button"></button>
+      </div>
+    </div>
+
+    <!-- Save confirmation dialog -->
+    <dialog id="save-confirmation-dialog">
+      <div>
+        <label for="name">Name:</label>
+        <input autofocus type="text" id="name-input" name="name" />
+      </div>
+      <button id="cancel-save-button">Cancel</button>
+      <button id="confirm-save-button">Confirm</button>
+    </dialog>
+
+    <!-- Load confirmation dialog -->
+    <dialog id="load-confirmation-dialog">
+      <div>
+        <label for="graph-select">Choose a graph:</label>
+        <select name="graphs" id="graph-select"></select>
+      </div>
+      <button id="cancel-load-button">Cancel</button>
+      <button id="confirm-load-button">Confirm</button>
+    </dialog>
+
+    <!-- Delete confirmation dialog -->
+    <dialog id="delete-confirmation-dialog">
+      <p>Are you sure you want to delete this graph?</p>
+      <button id="cancel-delete-button">Cancel</button>
+      <button id="confirm-delete-button">Confirm</button>
+    </dialog>
+  </body>
+</html>
